@@ -34,7 +34,6 @@ public class BookDaoSqlite implements pl.akademiakodu.library.dao.BookDao {
                 +"pages INTEGER "
                 +")";
 
-
         try{
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
@@ -46,14 +45,22 @@ public class BookDaoSqlite implements pl.akademiakodu.library.dao.BookDao {
 
     public static void main(String[] args){
         BookDaoSqlite bookDaoSqlite = new BookDaoSqlite();
+        bookDaoSqlite.addBook(new Book("Pozytywne myslenie","Brian Tracy",259));
+
     }
-
-
-
 
     @Override
     public void addBook(Book book) {
+        String sql = "INSERT INTO Books (title, author, pages) "
+                +"VALUES ('"+book.getTitle()+"',' "+book.getAuthor()+"', "+book.getPages()+")";
 
+        try{
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        }
+        catch (SQLException e){
+            System.out.println("Nie udało się wykonać SQL"+e.getMessage());
+        }
     }
 
     @Override
