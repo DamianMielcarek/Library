@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Lenovo on 2016-11-16.
  */
-public class BookDaoSqlite implements BookDao {
+public class BookDaoSqlite implements pl.akademiakodu.library.dao.BookDao {
     private Connection connection;
 
     public BookDaoSqlite(){
@@ -42,6 +42,10 @@ public class BookDaoSqlite implements BookDao {
         catch (SQLException e){
             System.out.println("Nie udało się wykonać SQL"+e.getMessage());
         }
+    }
+
+    public static void main(String[] args){
+        BookDaoSqlite bookDaoSqlite = new BookDaoSqlite();
     }
 
 
